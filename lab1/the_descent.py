@@ -1,4 +1,5 @@
 #https://www.codingame.com/ide/puzzle/the-descent
+#Szymon Maj s14965
 import sys
 import math
 

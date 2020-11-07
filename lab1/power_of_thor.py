@@ -1,4 +1,5 @@
 #https://www.codingame.com/ide/puzzle/power-of-thor
+#Szymon Maj s14965
 import sys
 import math
 
