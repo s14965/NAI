@@ -1,5 +1,5 @@
 '''
-Kółko i krzyżk https://pl.wikipedia.org/wiki/K%C3%B3%C5%82ko_i_krzy%C5%BCyk
+Kółko i krzyżyk https://pl.wikipedia.org/wiki/K%C3%B3%C5%82ko_i_krzy%C5%BCyk
 Minmax Jerzy Rześniowiecki, Szymon Maj 
 '''
 from math import inf as infinity
@@ -18,6 +18,13 @@ board = [
 
 
 def evaluate(state):
+    """
+    Function checks based on the board state if there's a winner and who is it
+    Parameters: 
+        state (list): Current state of the game board
+    Returns:
+        int: +1 for AI victory, -1 for player/Human victory, 0 for draw
+    """
     if wins(state, COMP):
         score = +1
     elif wins(state, HUMAN):
@@ -28,6 +35,16 @@ def evaluate(state):
     return score
 
 def wins(state, player):
+    """
+    Function checks if player managed to occupy 3 squares in straight line.
+        
+    Parameters: 
+        state (list): Current state of the game board
+        player (int): id of the player "+1" for comp "-1" for human
+    
+    Returns:
+        bool: Informs if the player won the game
+    """
     win_state = [
         [state[0][0], state[0][1], state[0][2]],
         [state[1][0], state[1][1], state[1][2]],
@@ -44,9 +61,27 @@ def wins(state, player):
         return False
 
 def game_over(state):
+    """
+    Function calls wins() function for both players to check if the game has ended
+    
+    Parameters: 
+        state (list): Current state of the game board
+        
+    Returns:
+        bool: Informs if either of players won the game
+    """
     return wins(state, HUMAN) or wins(state, COMP)
 
 def empty_cells(state):
+    """
+    Function marks empty cells for valid move options
+    
+    Parameters: 
+        state (list): Current state of the game board
+        
+    Returns:
+        array: Lists all valid moves
+    """
     cells = []
 
     for x, row in enumerate(state):
@@ -57,6 +92,16 @@ def empty_cells(state):
     return cells
 
 def set_move(x, y, player):
+    """
+    Attempts to execute players moves depending on the valid move list from empty_cells(board)
+    
+    Parameters: 
+        x,y(int):vertical and horizontal positions of the squares
+        player (int): id of the player "+1" for comp "-1" for human
+        
+    Returns:
+        bool: Either declines the move if it is not in a valid position, or returns it as valid and sets the mark down on the square selected
+    """
     if [x, y] in empty_cells(board):
         board[x][y] = player
         return True
@@ -64,6 +109,17 @@ def set_move(x, y, player):
         return False
 
 def minimax(state, depth, player):
+    """
+    Function running the AI calculations upon the game dependant on it's depth, current player, and game state.
+    
+    Parameters: 
+        state (list): Current state of the game board
+        depth (int): Current stage of the game
+        player (int): id of the player "+1" for comp "-1" for human
+        
+    Returns:
+        array: Most optimal move in accordance to the minimax algorithm
+    """
     if player == COMP:
         best = [-1, -1, -infinity]
     else:
@@ -90,6 +146,15 @@ def minimax(state, depth, player):
     return best
 
 def clean():
+    """
+    Function calls system funtion to refresh the screen
+    
+    Parameters: 
+        null
+        
+    Returns:
+        null
+    """
     os_name = platform.system().lower()
     if 'windows' in os_name:
         system('cls')
@@ -97,6 +162,17 @@ def clean():
         system('clear')
 
 def render(state, c_choice, h_choice):
+    """
+    Function draws game state in the console window
+    
+    Parameters: 
+        state (list): Current state of the game board
+        c_choice (string): Character used to represent areas occupied by computer
+        h_choice (string): Character used to represent areas occupied by human
+        
+    Returns:
+        null
+    """
     chars = {
         -1: h_choice,
         +1: c_choice,
@@ -111,6 +187,15 @@ def render(state, c_choice, h_choice):
         print('\n' + str_line)
 
 def ai_turn(c_choice, h_choice):
+    """
+    Algorithm for Ai to decide it's next move. Calls set_move() function to set it's move.
+    
+    Parameters: 
+        c_choice (string): Character used to represent areas occupied by computer
+        h_choice (string): Character used to represent areas occupied by human
+    Returns:
+        function: set_move()
+    """
     depth = len(empty_cells(board))
     if depth == 0 or game_over(board):
         return
@@ -130,6 +215,15 @@ def ai_turn(c_choice, h_choice):
     time.sleep(1)
 
 def human_turn(c_choice, h_choice):
+    """
+    Function prompts human player for his next move. Calls set_move() function to set player's move.
+    
+    Parameters: 
+        c_choice (string): Character used to represent areas occupied by computer
+        h_choice (string): Character used to represent areas occupied by human
+    Returns:
+        function: set_move()
+    """    
     depth = len(empty_cells(board))
     if depth == 0 or game_over(board):
         return
