@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Dec 18 00:04:34 2020
+'''
+Przekształcanie danych z excela do użytecznej postaci w pliku w formacie json
+Authors: Jerzy Rześniowiecki, Szymon Maj 
+'''
 
-@author: Nomys
-"""
 import openpyxl
 import json
 
@@ -98,15 +97,12 @@ class User:
     #     for movie in self.movies:
     #         print(movie, self.movies[str(movie)])
             
-    
-            
 users = list()
 AllMovies = list()
 
 for row in ws.values:
     users.append(User(row))
-    
-    
+        
 data = {}
 for person in users:
     data.update({person.name:person.returnMovies()})

@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+'''
+Program rekomendujący filmy 
+Authors: Jerzy Rześniowiecki, Szymon Maj 
+'''
+
 import json
 import compute_scores as cs
 
