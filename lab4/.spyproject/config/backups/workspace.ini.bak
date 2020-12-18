@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['dataload.py', 'compute_scores.py', 'ratings.json']
+recent_files = []
 

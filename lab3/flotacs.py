@@ -9,8 +9,7 @@ Input:
     
 Output:
     - warmup/cool command
-    - speedup/slowdown command
-    
+    - speedup/slowdown command 
 '''
 
 import numpy as np

@@ -1,0 +1,3 @@
+https://www.researchgate.net/publication/236157468_Air_Conditioning_System_with_Fuzzy_Logic_and_Neuro-Fuzzy_Algorithm
+
+https://github.com/scikit-fuzzy/scikit-fuzzy
