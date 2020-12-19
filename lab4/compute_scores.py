@@ -1,3 +1,9 @@
+'''
+source: wykłady NAI PJATK
+Skrypt liczący zgodnosc gustów
+Authors: Jerzy Rześniowiecki, Szymon Maj 
+'''
+
 import argparse
 import json
 import numpy as np
